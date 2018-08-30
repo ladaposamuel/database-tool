@@ -22,6 +22,9 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $request->validate([
+'term' => 'required',
+        ]);
         $data = [];
         $term =$request->input('term');
         $term_p =$request->input('term_p');
