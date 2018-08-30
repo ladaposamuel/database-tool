@@ -14,5 +14,6 @@
 
 
 Route::get('/','HomeController@index')->name('home');
+Route::get('/import','HomeController@importView')->name('import.view');
 Route::post('/','HomeController@search')->name('search');
 Route::post('/upload','HomeController@import')->name('import');

@@ -14,38 +14,36 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data=[];
-        $data['results']=[];
+        $data = [];
+        $data['results'] = [];
 
-        return view('home')->withData($data);
+        return view('home.search')->withData($data);
     }
 
+
+    public function importView(){
+        return view('home.import');
+    }
     public function search(Request $request)
     {
+       // dd($request->all());
         $request->validate([
-'term' => 'required',
+            'term' => 'required',
         ]);
         $data = [];
-        $term =$request->input('term');
-        $term_p =$request->input('term_p');
-        $state =$request->input('state');
-        $lga =$request->input('lga');
-        $network =$request->input('network');
+        $term = $request->input('term');
+        $var = $request->input('var');
 
-        $data['results'] = DB::table('pvc_users')->where([
-            [$term_p,'LIKE','%' . $term . '%'],
-            ['lga','=',$lga],
-            ['network','=',$network],
-            ['state','=',$state],
+        $data['results'] = DB::table('peoples')->where([
+            [$var, 'LIKE', '%' . $term . '%']
         ])->get();
 
-        return view('home')->withData($data);
-
+       return view('home.results')->withData($data);
     }
 
 
-
-    public function import(Request $request){
+    public function import(Request $request)
+    {
         //  dd($request->all());
 
         $file = $request->file('excel_file');
@@ -73,7 +71,7 @@ class HomeController extends Controller
                         'state' => $value->state,
                     );
                 }
-               dd($imports);
+                dd($imports);
                 if (empty($imports) && is_null($imports)) {
                     Session::flash('error', 'No data to import');
                     return back();
