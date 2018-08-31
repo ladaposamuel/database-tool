@@ -30,6 +30,7 @@
                             <th scope="col">First</th>
                             <th scope="col">Last</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Sex</th>
                             <th scope="col">Network</th>
                             <th scope="col">State</th>
@@ -42,6 +43,7 @@
                                 <td>{{$res->first_name}}</td>
                                 <td>{{$res->surname}}</td>
                                 <td>{{$res->number}}</td>
+                                <td>{{$res->email_address}}</td>
                                 <td>{{$res->sex}}</td>
                                 <td>{{$res->network_name}}</td>
                                 <td>{{$res->state}}</td>

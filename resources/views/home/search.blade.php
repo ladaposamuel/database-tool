@@ -12,6 +12,11 @@
                                 {{session()->get('error')}}
                             </div>
                         @endif
+                            @if(session()->has('success'))
+                            <div class="alert alert-success">
+                                {{session()->get('success')}}
+                            </div>
+                        @endif
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -36,9 +41,9 @@
                                     <option value="date_of_first_entry">Date of First Entry</option>
                                     <option value="mobgidi_balance">Mobgidi Balance</option>
                                     <option value="number">Number</option>
-                                    <option value="firstname">Firstname</option>
+                                    <option value="first_name">Firstname</option>
                                     <option value="surname">Surname</option>
-                                    <option value="email">Email Address</option>
+                                    <option value="email_address">Email Address</option>
                                     <option value="state">State</option>
                                     <option value="lg">LGA</option>
                                     <option value="sex">Sex</option>

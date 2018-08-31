@@ -61,8 +61,8 @@ class HomeController extends Controller
             $import = Excel::load($path, function ($reader) {
             })->get();
             if (!empty($import) && $import->count()) {
-//             dd($import);
-                foreach ($import as  $value) {
+//            dd($import);
+                foreach ($import as $value) {
                     $imports[] = array(
                         'firstname' => $value->first_name,
                         'surname' => $value->surname,
@@ -84,5 +84,28 @@ class HomeController extends Controller
                 }
             }
         }
+    }
+
+
+    public function importSave(Request $request)
+    {
+
+        $all_data = json_decode($request->input('all_data'), true);
+        for ($i = 0; $i < count($all_data); $i++) {
+
+            $save = DB::table('peoples')->insert([
+                'first_name' => $all_data[$i]['firstname'],
+                'surname' => $all_data[$i]['surname'],
+                'state' => $all_data[$i]['state'],
+                'sex' => $all_data[$i]['sex'],
+            ]);
+
+            if ($save) {
+                Session::flash('success', 'Data import successful');
+            } else {
+                Session::flash('error', 'Data import failed,please try again.');
+            }
+        }
+        return view('home.search');
     }
 }

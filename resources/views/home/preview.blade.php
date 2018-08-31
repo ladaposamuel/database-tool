@@ -37,6 +37,12 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        $ximports = json_encode($imports);
+                        $all_data = json_decode($ximports, true);
+                        //                        dd($all_data);
+                        //                        dd(array_sum(array_column($all_data,'net')));
+                        ?>
                         @for($i=0; $i < count($imports); $i++)
                             <tr>
                                 <td>{{$imports[$i]['firstname']}}</td>
@@ -52,6 +58,12 @@
                         @endfor
                         </tbody>
                     </table>
+                    <hr>
+                    <form action="{{route('import.save')}}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{  json_encode($all_data,true)  }} " name="all_data"/>
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </form>
                 </div>
             </div>
         </div>
