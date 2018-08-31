@@ -24,13 +24,13 @@
                         @endif
                     </div>
                     <h5 class="card-title">Import</h5>
-                    <form action="{{route('search')}}" method="POST">
+                    <form action="{{route('import')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="">xlsx File</label>
-                                <input type="file" class="form-control">
+                                <input type="file" name="excel_file" class="form-control">
                             </div>
 
                         </div>

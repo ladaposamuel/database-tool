@@ -21,12 +21,14 @@ class HomeController extends Controller
     }
 
 
-    public function importView(){
+    public function importView()
+    {
         return view('home.import');
     }
+
     public function search(Request $request)
     {
-       // dd($request->all());
+        // dd($request->all());
         $request->validate([
             'term' => 'required',
         ]);
@@ -38,7 +40,7 @@ class HomeController extends Controller
             [$var, 'LIKE', '%' . $term . '%']
         ])->get();
 
-       return view('home.results')->withData($data);
+        return view('home.results')->withData($data);
     }
 
 
@@ -59,26 +61,26 @@ class HomeController extends Controller
             $import = Excel::load($path, function ($reader) {
             })->get();
             if (!empty($import) && $import->count()) {
-//                dd($import);
-                foreach ($import as $key => $value) {
+//             dd($import);
+                foreach ($import as  $value) {
                     $imports[] = array(
-                        'firstname' => $value->firstname,
-                        'lastname' => $value->lastname,
-                        'phone' => $value->phone,
+                        'firstname' => $value->first_name,
+                        'surname' => $value->surname,
+                        'number' => $value->number,
                         'sex' => $value->sex,
-                        'network' => $value->network,
-                        'lga' => $value->lga,
+                        'network_name' => $value->network_name,
                         'state' => $value->state,
+                        'lg' => $value->lg,
                     );
                 }
-                dd($imports);
+
                 if (empty($imports) && is_null($imports)) {
                     Session::flash('error', 'No data to import');
                     return back();
                 } else {
                     //preview data
                     Session::flash('success', 'File uploaded successfully');
-                    return back();
+                    return view('home.preview')->withImports($imports);
                 }
             }
         }

@@ -23,7 +23,7 @@
                             </div>
                         @endif
                     </div>
-                    <h5 class="card-title">Results</h5>
+                    <h5 class="card-title">Preview ({{count($imports)}} records)</h5>
                     <table id="myTable" class="table">
                         <thead>
                         <tr>
@@ -37,19 +37,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($data['results'] as $res)
+                        @for($i=0; $i < count($imports); $i++)
                             <tr>
-                                <td>{{$res->first_name}}</td>
-                                <td>{{$res->surname}}</td>
-                                <td>{{$res->number}}</td>
-                                <td>{{$res->sex}}</td>
-                                <td>{{$res->network_name}}</td>
-                                <td>{{$res->state}}</td>
-                                <td>{{$res->lg}}</td>
+                                <td>{{$imports[$i]['firstname']}}</td>
+                                <td>{{$imports[$i]['surname']}}</td>
+                                <td>{{$imports[$i]['number']}}</td>
+                                <td>{{$imports[$i]['sex']}}</td>
+                                <td>{{$imports[$i]['network_name']}}</td>
+                                <td>{{$imports[$i]['state']}}</td>
+                                <td>{{$imports[$i]['lg']}}</td>
+
                             </tr>
-                        @empty
-                            nothing found
-                        @endforelse
+
+                        @endfor
                         </tbody>
                     </table>
                 </div>

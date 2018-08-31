@@ -33,14 +33,14 @@
                             <div class="form-group col-md-4">
                                 <label for="var">Variable</label>
                                 <select name="var" id="" class="form-control">
-                                    <option value="first_entry_date">Date of First Entry</option>
-                                    <option value="mogidi_balance">Mobgidi Balance</option>
+                                    <option value="date_of_first_entry">Date of First Entry</option>
+                                    <option value="mobgidi_balance">Mobgidi Balance</option>
                                     <option value="number">Number</option>
                                     <option value="firstname">Firstname</option>
                                     <option value="surname">Surname</option>
                                     <option value="email">Email Address</option>
                                     <option value="state">State</option>
-                                    <option value="LGA">LGA</option>
+                                    <option value="lg">LGA</option>
                                     <option value="sex">Sex</option>
                                     <option value="network_name">Network</option>
                                 </select>
